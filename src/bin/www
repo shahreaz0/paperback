@@ -1,0 +1,16 @@
+//modules
+const app = require("../app");
+const http = require("http");
+const chalk = require("chalk");
+
+//config port
+var port = process.env.PORT || "3000";
+app.set("port", port);
+
+//serving app
+var server = http.createServer(app);
+server.listen(port, () => {
+	console.log(chalk.blue("======================"));
+	console.log(chalk.bold.white(`Listening at port ${chalk.bold.red(port)}`));
+	console.log(chalk.blue("======================"));
+});
