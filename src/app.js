@@ -3,9 +3,9 @@ const path = require("path");
 const express = require("express");
 //db connection
 require("./db/conn");
-//Router()
-const homeRouter = require("./routes/home");
-console.log(process.env.NODE_ENV);
+//routes
+const homeRoutes = require("./routes/home");
+const authorRoutes = require("./routes/author");
 
 //express config
 const app = express();
@@ -16,9 +16,9 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "./../public")));
-
-//routes
-app.use("/", homeRouter);
+//routes config
+app.use(homeRoutes);
+app.use(authorRoutes);
 
 //exports
 module.exports = app;

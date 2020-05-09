@@ -1,0 +1,17 @@
+<%- include("./../partials/top") %>
+
+<h1>Search</h1>
+
+<form action="/author" , method="GET">
+  <input type="text" name="authorName">
+  <input type="submit" value="Search">
+</form>
+
+<ul>
+  <% authors.forEach(author => { %>
+  <li> <%= author.name %> </li>
+  <% }) %>
+
+</ul>
+
+<%- include("./../partials/bottom") %>

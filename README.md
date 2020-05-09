@@ -1,2 +1,3 @@
-# express-webpack-boilerplate
-A starter pack with Node, Express and Webpack
+# paperback
+
+A simple book library
