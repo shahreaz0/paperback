@@ -1,0 +1,32 @@
+<%- include("./../partials/top") %>
+
+<h1>Add Books</h1>
+
+<form action="/books" method="POST" enctype="multipart/form-data">
+
+    <label for="title">TITLE</label>
+    <input type="text" name="bookTitle" id="title">
+    <br>
+    <label for="title">DESCRIPTION</label>
+    <input type="text" name="bookDescription" id="title">
+    <br>
+    <label for="publish">PUBLISH DATE</label>
+    <input type="date" name="bookPublishDate" id="publish">
+    <br>
+    <label for="author">AUTHOR</label>
+    <select name="bookAuthor" id="">
+        <option value="">Choose</option>
+        <% authors.forEach(author => { %>
+        <option value="<%= author._id %>"> <%= author.name %> </option>
+        <% }) %>
+    </select>
+    <br>
+    <label for="cover"></label>
+    <input type="file" name="cover" id="cover">
+    <br>
+    <input type="submit" value="Submit">
+    <a href="/books">Cancel</a>
+</form>
+
+
+<%- include("./../partials/bottom") %>

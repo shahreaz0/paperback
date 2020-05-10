@@ -5,7 +5,8 @@ const express = require("express");
 require("./db/conn");
 //routes
 const homeRoutes = require("./routes/home");
-const authorRoutes = require("./routes/author");
+const authorRoutes = require("./routes/authors");
+const bookRoutes = require("./routes/books");
 
 //express config
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "./../public")));
 //routes config
 app.use(homeRoutes);
 app.use(authorRoutes);
+app.use(bookRoutes);
 
 //exports
 module.exports = app;

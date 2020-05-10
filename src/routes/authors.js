@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Author = require("./../models/Author");
 
 // GET /author
-router.get("/author", async (req, res) => {
+router.get("/authors", async (req, res) => {
 	try {
 		let searchOption = {};
 		if (req.query.authorName) {
@@ -11,9 +11,10 @@ router.get("/author", async (req, res) => {
 		}
 		const authors = await Author.find(searchOption);
 
-		res.render("author/index", {
+		res.render("authors/index", {
 			pageTitle: "Authors",
 			authors,
+			query: req.query.authorName,
 		});
 	} catch (error) {
 		res.render("error", { error });
@@ -21,20 +22,25 @@ router.get("/author", async (req, res) => {
 });
 
 // GET /author/new
-router.get("/author/new", (req, res) => {
-	res.render("author/new", {
+router.get("/authors/new", (req, res) => {
+	res.render("authors/new", {
 		pageTitle: "Add Author",
 	});
 });
 
 // POET /author
-router.post("/author", async (req, res) => {
+router.post("/authors", async (req, res) => {
 	try {
+		if (!req.body.authorName) throw "Enter author name.";
 		const author = new Author({ name: req.body.authorName });
 		await author.save();
 		res.redirect("/author");
 	} catch (error) {
-		res.render("error", { error });
+		res.render("error", {
+			pageTitle: "Error",
+			error,
+			backButton: "/authors/new",
+		});
 	}
 });
 

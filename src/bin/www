@@ -11,6 +11,6 @@ app.set("port", port);
 var server = http.createServer(app);
 server.listen(port, () => {
 	console.log(chalk.blue("======================"));
-	console.log(chalk.bold.white(`Listening at port ${chalk.bold.red(port)}`));
+	console.log(chalk.bold(`Listening at port ${chalk.bold.red(port)}`));
 	console.log(chalk.blue("======================"));
 });
