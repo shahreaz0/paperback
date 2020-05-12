@@ -2,5 +2,18 @@
 
 <h1>Paperback</h1>
 <p>Welcome to Paperback</p>
+<h2>Recently added books</h2>
+<div class="book-results">
+
+    <% books.forEach(book => { %>
+
+    <div class="book-results-item">
+        <p><%= book.title %> </p>
+        <img src="<%= book.imagePath %>" alt="<%= book.title %>" height="150px" width="100px">
+    </div>
+
+    <% }) %>
+
+</div>
 
 <%- include("./partials/bottom") %>

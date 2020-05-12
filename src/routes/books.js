@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
 const Book = require("./../models/Book");
 const Author = require("./../models/Author");
 
@@ -16,21 +18,30 @@ const upload = multer({
 	},
 });
 
-router.get("/books", (req, res) => {
-	// const book1 = new Book({
-	// 	title: "Title Something",
-	// 	description: "Nothing",
-	// 	publishDate: "2020-05-01",
-	// 	bookCoverName: "image1",
-	// });
-
-	// book1
-	// 	.save()
-	// 	.then((book) => console.log(book))
-	// 	.catch((err) => console.log(err));
-	res.render("books/index", {
-		pageTitle: "Books",
-	});
+router.get("/books", async (req, res) => {
+	try {
+		let query = Book.find();
+		//const books = await Book.find({});
+		if (req.query.title) {
+			query = query
+				.where("title")
+				.regex(new RegExp(req.query.title, "i"));
+		}
+		if (req.query.publishAfter) {
+			query = query.where("publishDate").gte(req.query.publishAfter);
+		}
+		if (req.query.publishBefore) {
+			query = query.where("publishDate").lte(req.query.publishBefore);
+		}
+		const books = await query.exec();
+		res.render("books/index", {
+			pageTitle: "Books",
+			searchOptions: req.query,
+			books,
+		});
+	} catch (error) {
+		res.render("error", { backButton: "/books", error });
+	}
 });
 
 router.get("/books/new", async (req, res) => {
@@ -60,11 +71,15 @@ router.post("/books", upload.single("cover"), async (req, res) => {
 			description: req.body.bookDescription,
 			publishDate: req.body.bookPublishDate,
 			author: req.body.bookAuthor,
-			bookCoverName: req.file.filename,
+			coverName: req.file.filename,
 		});
 		await book.save();
-		res.send(book);
+		res.redirect("/books");
 	} catch (error) {
+		fs.unlink(
+			path.join("public", "uploads", "cover", req.file.filename),
+			(err) => console.log(err),
+		);
 		res.render("error", {
 			pageTitle: "Error",
 			error,

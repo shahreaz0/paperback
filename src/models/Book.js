@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const path = require("path");
 
 const bookSchema = mongoose.Schema(
 	{
@@ -14,7 +15,7 @@ const bookSchema = mongoose.Schema(
 			type: Date,
 			required: true,
 		},
-		bookCoverName: {
+		coverName: {
 			type: String,
 			required: true,
 		},
@@ -27,5 +28,12 @@ const bookSchema = mongoose.Schema(
 		timestamps: true,
 	},
 );
+
+bookSchema.virtual("imagePath").get(function () {
+	book = this;
+	if (book.coverName) {
+		return path.join("uploads", "cover", book.coverName);
+	}
+});
 
 module.exports = mongoose.model("Book", bookSchema);

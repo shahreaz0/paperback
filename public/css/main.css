@@ -21,3 +21,11 @@ a {
 	display: flex;
 	align-items: center;
 }
+
+.book-results {
+	display: flex;
+}
+
+.book-results-item {
+	margin: 0 1rem;
+}
