@@ -14,6 +14,11 @@
 
   <% authors.forEach(author => { %>
   <li> <%= author.name %> </li>
+  <a href="/authors/<%= author._id %>">View</a>
+  <a href="/authors/<%= author._id %>/edit">Edit</a>
+  <form method="POST" action="/authors/<%= author._id %>?_method=DELETE">
+    <button>Delete</button>
+  </form>
   <% }) %>
 
   <% } else { %>

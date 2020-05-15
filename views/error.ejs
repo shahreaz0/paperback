@@ -2,6 +2,6 @@
 
 <h1>Error</h1>
 <p><%= error %> </p>
-<a href="<%= backButton %> ">Back</a>
+<a href="<%= locals.backButton ? backButton: ""  %> ">Back</a>
 
 <%- include("./partials/bottom") %>

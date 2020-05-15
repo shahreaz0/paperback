@@ -61,7 +61,7 @@ router.post("/books", async (req, res) => {
 		const coverData = JSON.parse(req.body.cover);
 		const mimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
 		if (coverData && mimeTypes.includes(coverData.type)) {
-			book.coverImage = new Buffer(coverData.data, "base64");
+			book.coverImage = new Buffer.from(coverData.data, "base64");
 			book.coverImageType = coverData.type;
 		}
 

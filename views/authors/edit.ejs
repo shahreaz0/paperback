@@ -1,0 +1,9 @@
+<%- include("./../partials/top") %>
+
+<form method="POST" action="/authors/<%= author._id %>?_method=PUT">
+    <input type="text" name="authorName">
+    <input type="submit" value="Submit">
+    <a href="/authors/<%= author._id %>">Cancel</a>
+</form>
+
+<%- include("./../partials/bottom") %>
