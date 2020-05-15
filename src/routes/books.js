@@ -1,23 +1,8 @@
 const router = require("express").Router();
-const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
 const Book = require("./../models/Book");
 const Author = require("./../models/Author");
 
-const upload = multer({
-	dest: "public/uploads/cover",
-	limits: {
-		fileSize: 1000000,
-	},
-	fileFilter(req, file, cb) {
-		if (!file.originalname.match(/\.(jpeg|jpg|png)$/i)) {
-			cb(new Error("Only image are allowed"));
-		}
-		cb(null, true);
-	},
-});
-
+// GET /books ------------------------------------------------------->
 router.get("/books", async (req, res) => {
 	try {
 		let query = Book.find();
@@ -44,6 +29,7 @@ router.get("/books", async (req, res) => {
 	}
 });
 
+// GET /books/new ------------------------------------------------->
 router.get("/books/new", async (req, res) => {
 	const authors = await Author.find({});
 	res.render("books/new", {
@@ -52,7 +38,8 @@ router.get("/books/new", async (req, res) => {
 	});
 });
 
-router.post("/books", upload.single("cover"), async (req, res) => {
+//POST /books ----------------------------------------------------->
+router.post("/books", async (req, res) => {
 	const inputs = [
 		"bookTitle",
 		"bookDescription",
@@ -64,22 +51,23 @@ router.post("/books", upload.single("cover"), async (req, res) => {
 		inputs.forEach((e) => {
 			if (!req.body[e]) throw `Enter ${e}`;
 		});
-		if (!req.file) throw "Select file";
 
 		const book = new Book({
 			title: req.body.bookTitle,
 			description: req.body.bookDescription,
 			publishDate: req.body.bookPublishDate,
 			author: req.body.bookAuthor,
-			coverName: req.file.filename,
 		});
+		const coverData = JSON.parse(req.body.cover);
+		const mimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+		if (coverData && mimeTypes.includes(coverData.type)) {
+			book.coverImage = new Buffer(coverData.data, "base64");
+			book.coverImageType = coverData.type;
+		}
+
 		await book.save();
 		res.redirect("/books");
 	} catch (error) {
-		fs.unlink(
-			path.join("public", "uploads", "cover", req.file.filename),
-			(err) => console.log(err),
-		);
 		res.render("error", {
 			pageTitle: "Error",
 			error,

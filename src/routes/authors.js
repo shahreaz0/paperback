@@ -34,7 +34,7 @@ router.post("/authors", async (req, res) => {
 		if (!req.body.authorName) throw "Enter author name.";
 		const author = new Author({ name: req.body.authorName });
 		await author.save();
-		res.redirect("/author");
+		res.redirect("/authors");
 	} catch (error) {
 		res.render("error", {
 			pageTitle: "Error",

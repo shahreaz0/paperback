@@ -14,8 +14,8 @@ const app = express();
 app.set("views", path.join("views"));
 app.set("view engine", "ejs");
 //use
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: false }));
 app.use(express.static(path.join("public")));
 //routes config
 app.use(homeRoutes);

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const path = require("path");
 
+//Schemas
 const bookSchema = mongoose.Schema(
 	{
 		title: {
@@ -15,9 +15,13 @@ const bookSchema = mongoose.Schema(
 			type: Date,
 			required: true,
 		},
-		coverName: {
+		coverImage: {
+			type: Buffer,
+			// required: true,
+		},
+		coverImageType: {
 			type: String,
-			required: true,
+			// required: true,
 		},
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -31,8 +35,10 @@ const bookSchema = mongoose.Schema(
 
 bookSchema.virtual("imagePath").get(function () {
 	book = this;
-	if (book.coverName) {
-		return path.join("uploads", "cover", book.coverName);
+	if (book.coverImage && book.coverImageType) {
+		return `data:${book.coverImageType};base64,${book.coverImage.toString(
+			"base64",
+		)}`;
 	}
 });
 
