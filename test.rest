@@ -8,3 +8,14 @@ PUT http://localhost:3000/authors/1223/
 
 ###
 DELETE  http://localhost:3000/authors/1223/
+
+
+### Books routes -> PUT
+PUT http://localhost:3000/books/1223/
+
+### Books routes -> DELETE
+DELETE  http://localhost:3000/books/1223/
+
+
+### Books routes -> GET
+GET http://localhost:3000/books/1223/
