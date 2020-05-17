@@ -1,20 +1,40 @@
 <%- include("./partials/top") %>
 
 <h1>Paperback</h1>
-<p>Welcome to Paperback</p>
 <h2>Recently added books</h2>
-<div class="book-results">
 
-    <% books.forEach(book => { %>
+<div class="ui grid">
 
-    <a href="/books/<%= book._id %> ">
-        <div class="book-results-item">
-            <p><%= book.title %> </p>
-            <img src="<%= book.imagePath %>" alt="<%= book.title %>" height="150px" width="100px">
+  <% books.forEach(book => { %>
+
+  <div class="four wide column">
+    <div class="ui special cards">
+      <div class="card">
+        <div class="blurring dimmable image">
+          <div class="ui dimmer">
+            <div class="content">
+              <div class="center">
+                <a href="/books/<%= book._id %>" class="ui inverted button">View</a>
+              </div>
+            </div>
+          </div>
+          <img src="<%= book.imagePath %>" height="250px" width="200px">
         </div>
-    </a>
-    <% }) %>
+        <div class="content">
+          <a class="header" href="/books/<%= book._id %>"><%= book.title %> </a>
+          <div class="meta">
+            <span class="date">Published in <%= book.publishDate.toDateString() %> </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% }) %>
 
 </div>
+
+<!-- semantic ui -->
+
+
 
 <%- include("./partials/bottom") %>
