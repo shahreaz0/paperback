@@ -12,7 +12,11 @@ router.get("/", async (req, res) => {
 			.sort({ publishDate: "desc" })
 			.limit(10)
 			.exec();
-		res.render("home", { pageTitle: "Paperback", books: recentBooks });
+		res.render("home", {
+			pageTitle: "Paperback",
+			books: recentBooks,
+			path: req.path,
+		});
 	} catch (error) {
 		res.render("error", {
 			pageTitle: "Error",

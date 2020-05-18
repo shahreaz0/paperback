@@ -21,6 +21,7 @@ router.get("/books", async (req, res) => {
 		const books = await query.exec();
 		res.render("books/index", {
 			pageTitle: "Books",
+			path: req.path,
 			searchOptions: req.query,
 			books,
 		});
@@ -34,6 +35,7 @@ router.get("/books/new", async (req, res) => {
 	const authors = await Author.find({});
 	res.render("books/new", {
 		pageTitle: "Add Book",
+		path: req.path,
 		authors,
 	});
 });

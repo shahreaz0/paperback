@@ -16,6 +16,7 @@ router.get("/authors", async (req, res) => {
 			pageTitle: "Authors",
 			authors,
 			query: req.query.authorName,
+			path: req.path,
 		});
 	} catch (error) {
 		res.render("error", { error });
@@ -26,6 +27,7 @@ router.get("/authors", async (req, res) => {
 router.get("/authors/new", (req, res) => {
 	res.render("authors/new", {
 		pageTitle: "Add Author",
+		path: req.path,
 	});
 });
 

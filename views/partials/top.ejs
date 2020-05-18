@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= locals.pageTitle ? pageTitle : "No Title" %> </title>
+    <link rel="shortcut icon" href="https://img.icons8.com/dotty/80/000000/book.png" type="image/x-icon">
     <link rel='stylesheet' href='/css/main.css' />
     <!-- filepond dependencies -->
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
@@ -19,12 +20,11 @@
 <body>
     <div class="ui container">
         <div class="ui secondary menu stackable">
-            <a class="active item" href="/">Home</a>
-            <a class="item" href="/authors">Authors</a>
-            <a class="item" href="/authors/new">Add Author</a>
-            <a class="item" href="/books">Books</a>
-            <a class="item" href="/books/new">Add Book</a>
+            <a class="item <%= locals.path && path === "/" && "active" %>" href="/">Home</a>
+            <a class="item <%= locals.path && path === "/authors" && "active" %>" href="/authors">Authors</a>
+            <a class="item <%= locals.path && path === "/authors/new" && "active" %>" href="/authors/new">Add Author</a>
+            <a class="item <%= locals.path && path == "/books" && "active" %>" href="/books">Books</a>
+            <a class="item <%= locals.path && path == "/books/new" && "active" %>" href="/books/new">Add Book</a>
             <div class="right menu">
-
             </div>
         </div>
