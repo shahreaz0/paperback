@@ -1,8 +1,11 @@
 <%- include("./partials/top") %>
 
-<h1>Paperback</h1>
-<h2>Recently added books</h2>
 
+<section id="header">
+  <h1>Paperback</h1>
+</section>
+
+<h2>Recently added books</h2>
 <div class="ui grid">
 
   <% books.forEach(book => { %>
@@ -29,12 +32,9 @@
       </div>
     </div>
   </div>
+
   <% }) %>
 
 </div>
-
-<!-- semantic ui -->
-
-
 
 <%- include("./partials/bottom") %>
