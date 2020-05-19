@@ -19,12 +19,15 @@
 
 <body>
     <div class="ui container">
-        <div class="ui secondary menu stackable">
-            <a class="item <%= locals.path && path === "/" && "active" %>" href="/">Home</a>
-            <a class="item <%= locals.path && path === "/authors" && "active" %>" href="/authors">Authors</a>
-            <a class="item <%= locals.path && path === "/authors/new" && "active" %>" href="/authors/new">Add Author</a>
-            <a class="item <%= locals.path && path == "/books" && "active" %>" href="/books">Books</a>
-            <a class="item <%= locals.path && path == "/books/new" && "active" %>" href="/books/new">Add Book</a>
-            <div class="right menu">
+        <section id="nav">
+            <div class="ui secondary menu stackable">
+                <a class="item <%= locals.path && path === "/" && "active" %>" href="/">Home</a>
+                <a class="item <%= locals.path && path === "/authors" && "active" %>" href="/authors">Authors</a>
+                <a class="item <%= locals.path && path === "/authors/new" && "active" %>" href="/authors/new">Add
+                    Author</a>
+                <a class="item <%= locals.path && path == "/books" && "active" %>" href="/books">Books</a>
+                <a class="item <%= locals.path && path == "/books/new" && "active" %>" href="/books/new">Add Book</a>
+                <div class="right menu">
+                </div>
             </div>
-        </div>
+        </section>

@@ -1,9 +1,26 @@
 <%- include("./../partials/top") %>
 
-<form action="/authors" method="POST">
-    <input type="text" name="authorName">
-    <input type="submit" value="Submit">
-    <a href="/author">Cancel</a>
-</form>
+<section class="form-section">
+    <div class="form-section__display">
+        <h1>Author</h1>
+    </div>
+    <div class="form-section__form">
+        <!-- <form action="/authors" method="POST">
+            <input type="text" name="authorName">
+            <input type="submit" value="Submit">
+            <a href="/authors">Cancel</a>
+        </form> -->
+        <form class="ui form" action="/authors" method="POST">
+            <div class="field">
+                <label>NAME</label>
+                <input type="text" name="authorName" placeholder="John Doe">
+            </div>
+            <button class="ui button" type="submit">Submit</button>
+            <a class="ui button basic" href="/authors">Cancel</a>
+        </form>
+    </div>
+</section>
+
+
 
 <%- include("./../partials/bottom") %>

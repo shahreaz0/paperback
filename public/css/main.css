@@ -4,10 +4,6 @@
 	box-sizing: border-box;
 }
 
-body {
-	margin-top: 1rem !important ;
-}
-
 /* Home page style */
 #header {
 	width: 100%;
@@ -33,74 +29,45 @@ body {
 	width: 100%;
 }
 
-@media screen and (max-width: 1000px) {
-	/* .ui.centered.grid {
-		padding: 0;
-		margin: 0;
-	} */
-	#fixed-image {
-		height: 26rem;
-	}
-	#header h1 {
-		font-size: 5rem;
-		font-weight: 100;
-	}
-}
+/* ================= authors new.ejs ========================= */
 
-@media screen and (max-width: 600px) {
-	#header {
-		padding: 2rem;
-	}
-	#header {
-		object-fit: cover;
-	}
-	#header h1 {
-		font-size: 3rem;
-		font-weight: 700;
-	}
-	#fixed-image {
-		height: 22rem;
-	}
-	#fixed-image img {
-		height: 100%;
-		width: 100%;
-	}
-}
-
-@media screen and (max-width: 350px) {
-	#header {
-		padding: 2rem;
-	}
-	#header {
-		object-fit: cover;
-	}
-	#header h1 {
-		font-size: 3rem;
-		font-weight: 700;
-	}
-	#fixed-image {
-		height: 18rem;
-	}
-	#fixed-image img {
-		height: 100%;
-		width: 100%;
-	}
-}
-
-/* Navbar */
-.nav-container {
+.form-section {
 	display: flex;
+	height: 70vh;
+	width: 100%;
 }
 
-.navigation {
+.form-section__display {
 	display: flex;
-}
-
-.navigation li {
-	list-style: none;
-	margin: 0 1rem;
-	display: flex;
+	justify-content: center;
 	align-items: center;
+	background-color: #f1cf54;
+	width: 50%;
+	border-radius: 5px;
+}
+
+.form-section__display h1 {
+	color: #fff;
+	font-size: 6rem;
+	font-weight: 100;
+}
+
+.form-section__form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	padding: 4rem;
+}
+
+.ui.form {
+	width: 100%;
+}
+
+/* ========================= Navbar ========================= */
+
+#nav {
+	margin: 1rem 0;
 }
 
 .book-results {
@@ -109,6 +76,83 @@ body {
 
 .book-results-item {
 	margin: 0 1rem;
+}
+
+/* ======================== Media Queries ========================== */
+
+@media screen and (max-width: 1200px) {
+	#fixed-image {
+		height: 24rem;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	#fixed-image {
+		height: 23rem;
+	}
+	#header h1 {
+		font-size: 5rem;
+		font-weight: 100;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#header {
+		padding: 2rem;
+	}
+	#header h1 {
+		font-size: 4rem;
+		font-weight: 700;
+	}
+	#fixed-image {
+		height: 28rem;
+	}
+
+	/* form section */
+	.form-section {
+		height: 50vh;
+	}
+
+	.form-section__display {
+		width: 30%;
+	}
+
+	.form-section__display h1 {
+		font-size: 4rem;
+	}
+
+	.form-section__form {
+		width: 70%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	/* form section */
+	.form-section {
+		flex-direction: column;
+	}
+
+	.form-section__display {
+		/* display: none; */
+		width: 100%;
+	}
+
+	.form-section__form {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#header {
+		padding: 2rem;
+	}
+	#header h1 {
+		font-size: 3rem;
+		font-weight: 700;
+	}
+	#fixed-image {
+		height: 20rem;
+	}
 }
 
 /* ================== Scrollbar Styling ================================*/
